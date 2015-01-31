@@ -1,0 +1,51 @@
+Declaring variables
+#+begin_src julia :results output
+  x = 8
+  show(x)
+#+end_src
+
+#+RESULTS:
+: 8
+
+Arithmetic
+#+begin_src julia :results output
+  x = 8
+  y = 7
+  print(x)
+  print(y)
+  print(x+y)
+#+end_src
+
+#+RESULTS:
+: 8715
+
+Wait, what happened here?  The output of x,y,x+y is mashed together.
+How to fix this?
+
+#+begin_src julia :results output
+  show{Int64}(x) = print("$x\n")
+  x = 8
+  y = 7
+  show(x)
+  show(y)
+  show(x+y)
+#+end_src
+
+#+RESULTS:
+
+
+#+begin_src julia :results output
+  function printX()
+      x::Int8 = 100
+      print(x,"\n")
+  end
+  printX()
+
+  let x::Int8=10
+      show(x)
+  end
+#+end_src
+
+
+#+RESULTS:
+
