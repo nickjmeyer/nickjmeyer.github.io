@@ -1,0 +1,64 @@
+#+startup: showall indent
+#+startup: hidestars
+
+#+begin_html
+---
+layout: post
+title: Julia - A Brief Introduction
+---
+#+end_html
+
+Declaring variables
+#+begin_src julia :results output :exports both
+  x = 8
+  show(x)
+#+end_src
+
+Arithmetic
+#+begin_src julia :results output :exports both
+  x = 8
+  y = 7
+  print(x)
+  print(y)
+  print(x+y)
+#+end_src
+
+Wait, what happened here?  The output of x,y,x+y is mashed together.
+How to fix this?
+
+#+begin_src julia :results output :exports both
+  x = 8
+  y = 7
+  print(x,"\n")
+  print(y,"\n")
+  print(x+y,"\n")
+#+end_src
+
+While it may be someone cumbersome to type the newline character "\n"
+everytime, this setup helps keep your output customizable.
+
+
+Lets, define our own class.  This class will be based on modular arithmetic.
+
+#+begin_src julia :results output :exports both
+  type ModType{n}
+      x::Int
+      ModeType(x::Int) = new(mod(x,n))
+  end
+
+  x=ModType{2}(6)
+  print(x)
+#+end_src
+
+
+#+begin_src julia :results output :exports both
+  print(1:5,"\n")
+  print([i for i=1:5],"\n")
+  print([trace(rand(n,n)) for n=1:5],"\n")
+#+end_src
+
+#+RESULTS:
+: 1:5
+: [1,2,3,4,5]
+: [0.7463004395311743,1.3774175974296095,0.8932908169729326,2.1792300355291694,2.2940385050185927]
+

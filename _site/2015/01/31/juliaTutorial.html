@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>All Posts</title>
+<title>Julia - A Brief Introduction</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="My stuff">
 <link href="/nickjmeyer.github.io/css/bootstrap.min.css" rel="stylesheet">
@@ -66,21 +66,137 @@
 </div>
 
       <div class="container">
-        <div class="container">
-  <div id="article">
-  <h1>Archive</h1>
-  <ul class="posts">
-    
-    <li><span><a href="/nickjmeyer.github.io/2015/01/31/juliaTutorial.html">Julia - A Brief Introduction</a><time class="pull-right post-list">Jan 31, 2015</h4></time></span></span></li>
-    
-    <li><span><a href="/nickjmeyer.github.io/jekyll/testing/2013/12/08/What-is-this-anyway.html">What is this, anyway?</a><time class="pull-right post-list">Dec 8, 2013</h4></time></span></span></li>
-    
-    <li><span><a href="/nickjmeyer.github.io/2013/12/04/Samples.html">Samples</a><time class="pull-right post-list">Dec 4, 2013</h4></time></span></span></li>
-    
-    <li><span><a href="/nickjmeyer.github.io/jekyll/update/2013/11/08/welcome-to-jekyll.html">Welcome to Jekyll!</a><time class="pull-right post-list">Nov 8, 2013</h4></time></span></span></li>
-    
-  </ul>
+        <div id="article">
+  <div class="article-title">Julia - A Brief Introduction</div>
+  <p class="meta">
+    <small>
+      &nbsp;<i class="fa fa-calendar-o"></i> 31 Jan 2015
+    </small>
+  </p> <hr/>
+  <div class="post">
+    <p>
+Declaring variables
+</p>
+<div class="org-src-container">
+
+<pre class="src src-julia">x = 8
+show(x)
+</pre>
 </div>
+
+<pre class="example">
+8
+</pre>
+
+<p>
+Arithmetic
+</p>
+<div class="org-src-container">
+
+<pre class="src src-julia">x = 8
+y = 7
+print(x)
+print(y)
+print(x+y)
+</pre>
+</div>
+
+<pre class="example">
+8715
+</pre>
+
+<p>
+Wait, what happened here?  The output of x,y,x+y is mashed together.
+How to fix this?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">x = 8
+y = 7
+print(x,"\n")
+print(y,"\n")
+print(x+y,"\n")
+</pre>
+</div>
+
+<pre class="example">
+8
+7
+15
+</pre>
+
+<p>
+While it may be someone cumbersome to type the newline character "\n"
+everytime, this setup helps keep your output customizable.
+</p>
+
+
+<p>
+Lets, define our own class.  This class will be based on modular arithmetic.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">type ModType{n}
+    x::Int
+    ModeType(x::Int) = new(mod(x,n))
+end
+
+x=ModType{2}(6)
+print(x)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">print(1:5,"\n")
+print([i for i=1:5],"\n")
+print([trace(rand(n,n)) for n=1:5],"\n")
+</pre>
+</div>
+
+<pre class="example">
+1:5
+[1,2,3,4,5]
+[0.8916302205258944,1.019999104111116,1.1279886971149247,2.46252055445864,2.0767146111883976]
+</pre>
+
+  </div>
+</div>
+<a href="https://twitter.com/share" class="twitter-share-button " data-size="small" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<ul class="pager">
+
+  <li class="previous"><a href="/jekyll/testing/2013/12/08/What-is-this-anyway.html">&larr; Older</a></li>
+
+
+</ul>
+
+<div id="disqus_thread">
+
+  <script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = ''; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by <span class="logo-disqus">Disqus</span>
+  </a>
+
+</div>
+
 
       </div>
       <div class="container">

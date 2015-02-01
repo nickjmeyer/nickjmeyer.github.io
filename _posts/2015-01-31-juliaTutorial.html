@@ -1,0 +1,92 @@
+---
+layout: post
+title: Julia - A Brief Introduction
+---
+
+<p>
+Declaring variables
+</p>
+<div class="org-src-container">
+
+<pre class="src src-julia">x = 8
+show(x)
+</pre>
+</div>
+
+<pre class="example">
+8
+</pre>
+
+<p>
+Arithmetic
+</p>
+<div class="org-src-container">
+
+<pre class="src src-julia">x = 8
+y = 7
+print(x)
+print(y)
+print(x+y)
+</pre>
+</div>
+
+<pre class="example">
+8715
+</pre>
+
+<p>
+Wait, what happened here?  The output of x,y,x+y is mashed together.
+How to fix this?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">x = 8
+y = 7
+print(x,"\n")
+print(y,"\n")
+print(x+y,"\n")
+</pre>
+</div>
+
+<pre class="example">
+8
+7
+15
+</pre>
+
+<p>
+While it may be someone cumbersome to type the newline character "\n"
+everytime, this setup helps keep your output customizable.
+</p>
+
+
+<p>
+Lets, define our own class.  This class will be based on modular arithmetic.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">type ModType{n}
+    x::Int
+    ModeType(x::Int) = new(mod(x,n))
+end
+
+x=ModType{2}(6)
+print(x)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-julia">print(1:5,"\n")
+print([i for i=1:5],"\n")
+print([trace(rand(n,n)) for n=1:5],"\n")
+</pre>
+</div>
+
+<pre class="example">
+1:5
+[1,2,3,4,5]
+[0.8916302205258944,1.019999104111116,1.1279886971149247,2.46252055445864,2.0767146111883976]
+</pre>
