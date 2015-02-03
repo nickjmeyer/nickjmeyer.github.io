@@ -1,6 +1,9 @@
 #+startup: showall indent
 #+startup: hidestars
 
+#+property: header-args :results output :exports both :session
+
+
 #+begin_html
 ---
 layout: post
@@ -8,41 +11,61 @@ title: Julia - A Brief Introduction
 ---
 #+end_html
 
+
 Declaring variables
-#+begin_src julia :results output :exports both :session :cache yes
-  x = 8;
-  x
-  show(x)
+#+begin_src julia
+  x = 0
+  y = 1
 #+end_src
+
+In an interactive session, we can see Julia prints the output.  If we
+want to suppress output, we can append a semicolon.
+
+#+begin_src julia
+  x = 0; ## does not produce output
+#+end_src
+
+Two ways of displaying output are the =show= and
+=print= commands.
 
 
 Arithmetic
-#+begin_src julia :results output :exports both :cache yes
-  x = 8
-  y = 7
-  print(x)
-  print(y)
-  print(x+y)
+#+begin_src julia
+  x = 4;
+  y = 12;
+
+  x + y
+  x - y
+  x * y
+  x / y ## x divided by y
+  x \ y ## y divided by x
+  y % x ## y modulos x
+  y ^ x
 #+end_src
 
-Wait, what happened here?  The output of x,y,x+y is mashed together.
-How to fix this?
+Dividing $4$ by $12$, results in a repeating decimal.  Converting this
+result to a floating point type leads to a loss of precision.  This
+value is a rational number which means it can be represented as a
+ratio of integers.  Julia has a builtin type for 
 
-#+begin_src julia :results output :exports both :cache yes
-  x = 8
-  y = 7
-  print(x,"\n")
-  print(y,"\n")
-  print(x+y,"\n")
-#+end_src
+#+BEGIN_SRC julia
+    r=x//y
+    convert(Float64,r)
+#+END_SRC
 
-While it may be someone cumbersome to type the newline character "\n"
-everytime, this setup helps keep your output customizable.
+Behind the scenes, the rational number type is simply stored as two
+integers.  This can be seen using =help=.
+
+#+BEGIN_SRC julia
+  help(r)
+  help(r.num)
+  help(r.den)
+#+END_SRC
 
 
 Lets, define our own class.  This class will be based on modular arithmetic.
 
-#+begin_src julia :results output :exports both :cache yes
+#+begin_src julia
   type ModType{n}
       x::Int
       ModeType(x::Int) = new(mod(x,n))
@@ -53,9 +76,10 @@ Lets, define our own class.  This class will be based on modular arithmetic.
 #+end_src
 
 
-#+begin_src julia :results output :exports both :cache yes
+#+begin_src julia
   print(1:5,"\n")
   print([i for i=1:5],"\n")
   print([trace(rand(n,n)) for n=1:5],"\n")
 #+end_src
+
 
