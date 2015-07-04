@@ -1,0 +1,86 @@
+---
+layout: post
+title: "Making a remote with Arduinos"
+categories: Arduinos
+---
+
+<p>
+Last winter, I hacked a Pogoplug V4 with <a href="http://blog.qnology.com/2014/07/hacking-pogoplug-v4-series-4-and-mobile.html">this</a> tutorial and installed
+Arch Linux ARM.  The Pogoplug is a very cheap and inexpensive way to
+set up a home server.  I highly recommend it if your server needs are
+aren't too complex.  With this server, I set up a NFS to house all my
+media.  I run XBMC on an Amazon Fire TV and link it to the NFS.  It
+works great.  One night, I was laying in bed and decided that using
+the factory remote for the Fire TV was boring.  So, I decided I should
+learn how to program Arduinos.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Arduinos</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Learning how to program an Arduino was an easier than expected task.
+I picked up a <a href="https://www.arduino.cc/en/Main/ArduinoStarterKit">starter kit</a> and followed some of the tutorials.  The
+book that comes with the kit does a great job of walking you through
+some basic programs.  Besides the nice tutorials, another benefit to
+the starter kit is the plethera of parts that comes with it.  If
+you're like me, and know little about building circuits, it is nice
+to have all the parts (resistors, LEDs, capacitors, etc.) that come
+with the kit.  After playing with the kit, it didn't take long to
+realize that the Arduinos would be perfect for building my remote.
+</p>
+
+<p>
+There are many different Arduino boards.  I decided to use the
+<a href="https://www.arduino.cc/en/Main/ArduinoBoardMicro">Arduino Micro</a> since they are capable as acting as a keyboard when
+plugged into USB.  More information about this can be found <a href="https://www.arduino.cc/en/Reference/MouseKeyboard">here</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Choosing the transport layer</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When I was first planning my attack, I thought that Bluetooth Low
+Energy (BLE) was going to be the way to go.  The range was good enough and
+energy draw was low.  However, it turns out that most of the BLE
+breakout boards can only be a peripheral.  This means that it can
+broadcast its existence, but cannot initiate a handshake to pair
+with another device.  In order to use BLE, I would need find an
+alternative to a microprocessor for the receiver node.
+</p>
+
+<p>
+With BLE not being a viable option, I opted to use a 2.4Ghz
+connection.  This turned out to be a much better option.  You can
+purchase the NRF24L01+ transceivers for a few dollars each and the
+range is great.  To interact with the transceivers I used the <a href="http://maniacbug.github.io/RF24/">RF24</a>
+library.  There are many examples to show you how to use the library
+and to test your boards.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Staging on the breadboard</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+To make life easier, I picked up a couple breadboards to use during
+development.
+</p>
+
+
+<div class="figure">
+<p><img src="{{site.baseurl}}/images/microOnBreadBoard.jpg" alt="microOnBreadBoard.jpg" width="40%" />
+</p>
+<p><span class="figure-number">Figure 1:</span> This is an Ardiuno Micro on a bread board</p>
+</div>
+
+
+<div class="figure">
+<p><img src="{{site.baseurl}}/images/nrf24l01+.jpg" alt="nrf24l01+.jpg" width="40%" />
+</p>
+</div>
+</div>
+</div>
