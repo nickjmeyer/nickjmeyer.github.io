@@ -15,6 +15,13 @@ works great.  One night, I was laying in bed and decided that using
 the factory remote for the Fire TV was boring.  So, I decided I should
 learn how to program Arduinos.
 
+For this post, I'm going to focus on setting up the wireless
+communcation between the Arduinos.  Ultimately, I will put the boards
+into a SNES controller, but for that I need to learn to solder.  In
+addition, the power draw of the micro is too high to make a sufficient
+remote.  I will need to use a "barebones Arduino" to obtain this
+efficiency.  The latter parts will come in other posts.
+
 * Arduinos
   Learning how to program an Arduino was an easier than expected task.
   I picked up a [[https://www.arduino.cc/en/Main/ArduinoStarterKit][starter kit]] and followed some of the tutorials.  The
@@ -30,6 +37,10 @@ learn how to program Arduinos.
   [[https://www.arduino.cc/en/Main/ArduinoBoardMicro][Arduino Micro]] since they are capable as acting as a keyboard when
   plugged into USB.  More information about this can be found [[https://www.arduino.cc/en/Reference/MouseKeyboard][here]].
 
+  #+caption: The Arduino Micro.
+  #+attr_html: :width 40%
+  [[file:{{site.baseurl}}/images/microQuarter.jpg]]
+
 * Choosing the transport layer
   When I was first planning my attack, I thought that Bluetooth Low
   Energy (BLE) was going to be the way to go.  The range was good enough and
@@ -42,17 +53,32 @@ learn how to program Arduinos.
   With BLE not being a viable option, I opted to use a 2.4Ghz
   connection.  This turned out to be a much better option.  You can
   purchase the NRF24L01+ transceivers for a few dollars each and the
-  range is great.  To interact with the transceivers I used the [[http://maniacbug.github.io/RF24/][RF24]]
+  range is great.
+
+  #+caption: This is a NRF24L01+ transceiver.
+  #+attr_html: :width 40%
+  [[file:{{site.baseurl}}/images/nrf24l01plusQuarter.jpg]]
+
+
+  To interact with the transceivers I used the [[http://maniacbug.github.io/RF24/][RF24]]
   library.  There are many examples to show you how to use the library
   and to test your boards.
 
 * Staging on the breadboard
-  To make life easier, I picked up a couple breadboards to use during
-  development.
+  I picked up a couple breadboards to use during development.  Being
+  able to easily move parts and wires around at will makes development
+  much simpler.  I started out by just having three buttons: left
+  arrow, right arrow, and return.
 
-  #+caption: This is an Ardiuno Micro on a bread board
+  #+caption: The Arduino Micro on the breadboard with the NRF24L01+ transceiver.
   #+attr_html: :width 40%
   [[file:{{site.baseurl}}/images/microOnBreadBoard.jpg]]
 
+
+  Here is the setup for the controller.
   #+attr_html: :width 40%
-  [[file:{{site.baseurl}}/images/nrf24l01+.jpg]]
+  [[file:{{site.baseurl}}/images/controller_bb.png]]
+
+  Here is the setup for the receiver.
+  #+attr_html: :width 40%
+  [[file:{{site.baseurl}}/images/receiver_bb.png]]
