@@ -1,0 +1,26 @@
+#+BEGIN_HTML
+---
+layout: default
+---
+#+END_HTML
+
+#+BEGIN_HTML
+  <style>
+   div p img {
+     display: block;
+     margin: auto;
+    }
+  </style>
+#+END_HTML
+
+
+* Hi!
+  I'm Nick Meyer.  Currently, I am in graduate school at North
+  Carolina State University studying statistics.  I grew up in
+  Michigan in a suburb of Detroit and moved to Raleigh in 2012 for
+  graduate school.  For undergrad, I studied at the University of
+  Michigan where my highest priority was attending the football games.
+  Go Blue!!!
+
+  #+attr_html: :width 40%
+  [[./me.jpg]]

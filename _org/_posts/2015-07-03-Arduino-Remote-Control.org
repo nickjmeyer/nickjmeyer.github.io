@@ -6,14 +6,16 @@ categories: Arduinos
 ---
 #+END_HTML
 
+#+startup: showeverything
+
 Last winter, I hacked a Pogoplug V4 with [[http://blog.qnology.com/2014/07/hacking-pogoplug-v4-series-4-and-mobile.html][this]] tutorial and installed
 Arch Linux ARM.  The Pogoplug is a very cheap and inexpensive way to
 set up a home server.  I highly recommend it if your server needs are
 aren't too complex.  With this server, I set up a NFS to house all my
-media.  I run XBMC on an Amazon Fire TV and link it to the NFS.  It
+media.  I run XBMC on an Amazon Fire TV and mount the NFS.  It
 works great.  One night, I was laying in bed and decided that using
 the factory remote for the Fire TV was boring.  So, I decided I should
-learn how to program Arduinos.
+make my own.
 
 For this post, I'm going to focus on setting up the wireless
 communcation between the Arduinos.  Ultimately, I will put the boards
@@ -22,63 +24,156 @@ addition, the power draw of the micro is too high to make a sufficient
 remote.  I will need to use a "barebones Arduino" to obtain this
 efficiency.  The latter parts will come in other posts.
 
-* Arduinos
-  Learning how to program an Arduino was an easier than expected task.
-  I picked up a [[https://www.arduino.cc/en/Main/ArduinoStarterKit][starter kit]] and followed some of the tutorials.  The
-  book that comes with the kit does a great job of walking you through
-  some basic programs.  Besides the nice tutorials, another benefit to
-  the starter kit is the plethera of parts that comes with it.  If
-  you're like me, and know little about building circuits, it is nice
-  to have all the parts (resistors, LEDs, capacitors, etc.) that come
-  with the kit.  After playing with the kit, it didn't take long to
-  realize that the Arduinos would be perfect for building my remote.
 
-  There are many different Arduino boards.  I decided to use the
-  [[https://www.arduino.cc/en/Main/ArduinoBoardMicro][Arduino Micro]] since they are capable as acting as a keyboard when
-  plugged into USB.  More information about this can be found [[https://www.arduino.cc/en/Reference/MouseKeyboard][here]].
+* Where to start?
+  Since this was my first crack at electrical engineering, I decided
+  the first thing to do was order a SNES controller online and open it
+  up (I didn't want to use my own for the first round).  The inside is
+  quite simple.  Each button is attached to a conductive pad that
+  shorts a circuit when the button is pressed.
+
+  #+caption: A knock-off SNES controller.
+  #+attr_html: :width 40% :class center
+  [[file:{{site.baseurl}}/images/knockOffSNES.jpg]]
+
+  # [[yt:BLlhH70z-ew][sample embedded youtube video]]
+
+  The controller has a parallel-in serial-out shift register that the
+  console uses to read the button inputs.  The shift register sends the
+  input from one button at a time and the console has the ability to
+  cycle which button it is reading.  All I had to do was connect an
+  Arduino to the shift register and read the input just as if the
+  Arduino was a SNES console.  Arduino has a great [[https://www.arduino.cc/en/Tutorial/ShiftIn][tutorial]] on reading
+  multiple button inputs using shift registers.
+
+  At this point, I had no hardware or hands-on knowledge of how to
+  complete this project.  I spent a lot of time reading about shift
+  registers and watching Youtube tutorials before I bought any tools.
+  Once I felt like I knew the path I needed to take, I started with
+  learning the basics of programming Arduinos.
+
+
+* Learning to use an Arduino
+  To begin, I picked up a [[https://www.arduino.cc/en/Main/ArduinoStarterKit][starter kit]] and followed some of the
+  tutorials.  The book that comes with the kit does a great job of
+  walking you through some basic programs.  Besides the nice
+  tutorials, another benefit to the starter kit is the plethera of
+  parts that comes with it.  If you're like me, and know little about
+  building circuits, it is nice to have all the parts (resistors,
+  LEDs, capacitors, etc.) that come with the kit and not have to worry
+  about finding them on your own.
+
+  #+caption: Arduino Starter Kit
+  #+attr_html: :width 40% :class center
+  file:{{site.baseurl}}/images/arduinoStarterKit.jpg
+
+  There are many different Arduino boards.  Inside the starter kit was
+  an Arduino Uno.  This is a commonly used board, but this board was
+  not going to work for my purposes.  For this project, I needed
+  something that could act as a USB keyboard.  The choices were the
+  Arduino Micro, Leonardo, or Due.  I decided to use the [[https://www.arduino.cc/en/Main/ArduinoBoardMicro][Arduino Micro]]
+  due to the small size.
 
   #+caption: The Arduino Micro.
-  #+attr_html: :width 40%
+  #+attr_html: :width 40% :class center
   [[file:{{site.baseurl}}/images/microQuarter.jpg]]
 
-* Choosing the transport layer
-  When I was first planning my attack, I thought that Bluetooth Low
-  Energy (BLE) was going to be the way to go.  The range was good enough and
-  energy draw was low.  However, it turns out that most of the BLE
-  breakout boards can only be a peripheral.  This means that it can
-  broadcast its existence, but cannot initiate a handshake to pair
-  with another device.  In order to use BLE, I would need find an
-  alternative to a microprocessor for the receiver node.
+# * Choosing the transport layer
+#   When I was first planning my attack, I thought that Bluetooth Low
+#   Energy (BLE) was going to be the way to go.  The range was good enough and
+#   energy draw was low.  However, it turns out that most of the BLE
+#   breakout boards can only be a peripheral.  This means that it can
+#   broadcast its existence, but cannot initiate a handshake to pair
+#   with another device.  In order to use BLE, I would need find an
+#   alternative to a microprocessor for the receiver node.
 
-  With BLE not being a viable option, I opted to use a 2.4Ghz
-  connection.  This turned out to be a much better option.  You can
-  purchase the NRF24L01+ transceivers for a few dollars each and the
-  range is great.
+#   With BLE not being a viable option, I opted to use a 2.4Ghz
+#   connection.  This turned out to be a much better option.  You can
+#   purchase the nRF24L01+ transceivers for a few dollars each and the
+#   range is great.
 
-  #+caption: This is a NRF24L01+ transceiver.
-  #+attr_html: :width 40%
-  [[file:{{site.baseurl}}/images/nrf24l01plusQuarter.jpg]]
-
-
-  To interact with the transceivers I used the [[http://maniacbug.github.io/RF24/][RF24]]
-  library.  There are many examples to show you how to use the library
-  and to test your boards.
-
-* Staging on the breadboard
-  I picked up a couple breadboards to use during development.  Being
-  able to easily move parts and wires around at will makes development
-  much simpler.  I started out by just having three buttons: left
-  arrow, right arrow, and return.
-
-  #+caption: The Arduino Micro on the breadboard with the NRF24L01+ transceiver.
-  #+attr_html: :width 40%
-  [[file:{{site.baseurl}}/images/microOnBreadBoard.jpg]]
+#   #+caption: This is a nRF24L01+ transceiver.
+#   #+attr_html: :width 40%
+#   [[file:{{site.baseurl}}/images/nrf24l01plusQuarter.jpg]]
 
 
-  Here is the setup for the controller.
-  #+attr_html: :width 40%
-  [[file:{{site.baseurl}}/images/controller_bb.png]]
+#   To interact with the transceivers I used the [[http://maniacbug.github.io/RF24/][RF24]] library.  There
+#   are many [[http://maniacbug.github.io/RF24/examples.html][examples]] to show you how to use the library and to test
+#   your boards.
 
-  Here is the setup for the receiver.
-  #+attr_html: :width 40%
-  [[file:{{site.baseurl}}/images/receiver_bb.png]]
+# * Staging on the breadboard
+#   I picked up a couple breadboards to use during development.  Being
+#   able to easily move parts and wires around at will makes development
+#   much simpler.  I started out by just having three buttons: left
+#   arrow, right arrow, and return.
+
+#   #+caption: The Arduino Micro on the breadboard with the nRF24L01+ transceiver.
+#   #+attr_html: :width 40%
+#   [[file:{{site.baseurl}}/images/microOnBreadBoard.jpg]]
+
+
+#   Here is the setup for the controller.
+#   #+attr_html: :width 40%
+#   [[file:{{site.baseurl}}/images/controller_bb.png]]
+
+#   Here is the setup for the receiver.
+#   #+attr_html: :width 40%
+#   [[file:{{site.baseurl}}/images/receiver_bb.png]]
+
+* Reading SNES button inputs
+  Below is the SNES controller pinout.  Note that the "strobe" is also
+  referred to as the "latch".I cut the cord to the SNES controller and
+  attached the wires to [[https://en.wikipedia.org/wiki/Jump_wire][jumper wires]] to use on a breadboard.
+
+  #+attr_html: :width 40% :class center
+  #+caption: SNES pinout.  ([[http://flatfootfox.com/img/2013/snes_pinout-1.png][source]])
+  [[http://flatfootfox.com/img/2013/snes_pinout-1.png]]
+
+  Here is a table showing which pins on the Arduino to connect to each
+  wire on the controller.
+
+  #+attr_html: :class center
+  | SNES   | Arduino Pin |
+  |--------+-------------|
+  | 5V     | 5V          |
+  | Ground | Ground      |
+  | Clock  | 7           |
+  | Strobe | 6           |
+  | Data   | 5           |
+
+  When reading the button inputs, the button order is in the following
+  table.
+
+  #+attr_html: :class center
+  | Number | Button |
+  |--------+--------|
+  |      1 | B      |
+  |      2 | Y      |
+  |      3 | Select |
+  |      4 | Start  |
+  |      5 | Up     |
+  |      6 | Down   |
+  |      7 | Left   |
+  |      8 | Right  |
+  |      9 | A      |
+  |     10 | X      |
+  |     11 | L      |
+  |     12 | R      |
+
+  The code for reading the buttons is [[https://github.com/nickjmeyer/nesModding/blob/master/nesInput/nesInput.ino][here]].  In order to compile the
+  code you need to install the [[http://maniacbug.github.io/RF24/][RF24]] library following [[https://www.arduino.cc/en/Guide/Libraries][this]] guide.
+
+  Here is a video showing the controller and the corresponding output.
+
+  [[yt:9WMlLDmP2TA]]
+
+
+
+* Transmitting button inputs
+  Originally my plan was to use Bluetooth Low energy (BLE) as my
+  transport layer.  After some researching, it appeared that BLE
+  modules for Arduinos were mostly peripherals.  This meant that they
+  could not initiate the pair but could be discovered by another BLE
+  device (e.g. smartphoneor  laptop).  Thus I chose to use 2.4GHz
+  instead.  I bought a couple nRF24L01+ modules off Amazon.  You can
+  get these for a couple dollars a piece and they work great.
