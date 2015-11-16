@@ -13,6 +13,8 @@ layout: default
   </style>
 #+END_HTML
 
+#+startup: showeverything
+
 
 * Hi!
   I'm Nick Meyer.  Currently, I am in graduate school at North

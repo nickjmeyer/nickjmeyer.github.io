@@ -1,0 +1,33 @@
+#+BEGIN_HTML
+---
+layout: default
+---
+
+<style>
+ div p img {
+   display: block;
+   margin: auto;
+  }
+</style>
+#+END_HTML
+
+#+startup: showeverything
+
+My research interests include reinforcement learning, robotics,
+automation, machine learning.
+
+* Publications:
+  On-line estimation of an optimal treatment allocation strategy for the
+  control of white-nose syndrome in batsPublications
+  - Laber, B., *N. Meyer*, B. Reich, K. Pacifici, J. Collazo, J. Drake
+  - Status: under review
+
+  Collaborative multi-agent search strategies for locating rogue
+  nuclear weapons
+  - *Meyer, N.*, E. Laber, R. Brigantic
+  - Status: in preparation
+
+  Estimation of an optimal spatio-temporal allocation strategy without
+  a system dynamics model
+  - *Meyer, N.*, E. Laber, B. Reich, K. Pacifici
+  - Status: in preparation

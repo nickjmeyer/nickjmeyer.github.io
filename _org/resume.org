@@ -1,0 +1,20 @@
+#+BEGIN_HTML
+---
+layout: default
+---
+
+<style>
+ div p img {
+   display: block;
+   margin: auto;
+  }
+</style>
+#+END_HTML
+
+#+attr_html: :download meyer_resume.pdf
+[[./meyer_resume.pdf][Download as PDF]]
+
+
+#+BEGIN_HTML
+<embed src="./meyer_re.pdf">
+#+END_HTML

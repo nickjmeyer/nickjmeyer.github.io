@@ -167,6 +167,17 @@ wire on the controller.
 </table>
 
 <p>
+The following figure is the Arduino Micro on a breadboard connected
+to the SNES controller.
+</p>
+
+
+<div class="figure">
+<p><img src="{{site.baseurl}}/images/arduinoSnesInput.jpg" alt="arduinoSnesInput.jpg" width="40%" />
+</p>
+</div>
+
+<p>
 When reading the button inputs, the button order is in the following
 table.
 </p>
@@ -264,18 +275,15 @@ Here is a video showing the controller and the corresponding output.
 </div>
 
 
-
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Transmitting button inputs</h2>
+<h2 id="sec-4">To be continued&#x2026;</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-Originally my plan was to use Bluetooth Low energy (BLE) as my
-transport layer.  After some researching, it appeared that BLE
-modules for Arduinos were mostly peripherals.  This meant that they
-could not initiate the pair but could be discovered by another BLE
-device (e.g. smartphoneor  laptop).  Thus I chose to use 2.4GHz
-instead.  I bought a couple nRF24L01+ modules off Amazon.  You can
-get these for a couple dollars a piece and they work great.
+Now that we can read the buttons from the controller, the next step
+is to convert those to keyboard inputs.  Then we can use a second
+Arduino and set up wireless communication.  Finally we will make the
+remote power efficient enough to run off of a battery.  These will
+come in later posts so check back later.
 </p>
 </div>
 </div>
