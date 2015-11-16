@@ -1,7 +1,7 @@
 #+BEGIN_HTML
 ---
 layout: post
-title: "Making a remote with Arduinos"
+title: Reading a SNES controller using Arduinos
 categories: Arduinos
 ---
 #+END_HTML
