@@ -11,8 +11,11 @@ layout: default
 </style>
 #+END_HTML
 
+
+[[./meyer_resume.pdf][View in browser]]
+
 #+attr_html: :download meyer_resume.pdf
-[[./meyer_resume.pdf][Download as PDF]]
+[[./meyer_resume.pdf][Download as pdf]]
 
 
 #+BEGIN_HTML
