@@ -4,18 +4,17 @@ title: Powers of 2
 categories: Computing
 ---
 
-
 <p>
-Computing powers of \(2\) is a fairly common task in scientific
+Computing integer powers of \(2\) is a fairly common task in scientific
 simulations.  This can arise for a number of reasons.  The one I often
 run into is calculating the number of combinations of binary
 variables.
 </p>
 
 <p>
-To compute \(2^x\) for some \(x\), the obvious way would be to use an
-exponent function from a math library.  However, another option is
-through bit shifting.
+To compute \(2^x\) for some \(x \in \lbrace 0,1,2,\ldots \rbrace\), the obvious
+way would be to use an exponent function from a math library.
+However, another option is through bit shifting.
 </p>
 
 <p>
@@ -58,9 +57,9 @@ print "bit shifting: %f (%f)" % (statistics.mean(f3res),
 </div>
 
 <pre class="example">
-operator: 0.505953 (0.001447)
-math.pow: 0.226857 (0.000422)
-bit shifting: 0.068914 (0.000183)
+operator: 0.540463 (0.006028)
+math.pow: 0.245065 (0.002664)
+bit shifting: 0.071052 (0.000833)
 </pre>
 
 
