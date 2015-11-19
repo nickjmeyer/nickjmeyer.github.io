@@ -1,0 +1,77 @@
+---
+layout: post
+title: Powers of 2
+categories: Computing
+---
+
+
+<p>
+Computing powers of \(2\) is a fairly common task in scientific
+simulations.  This can arise for a number of reasons.  The one I often
+run into is calculating the number of combinations of binary
+variables.
+</p>
+
+<p>
+To compute \(2^x\) for some \(x\), the obvious way would be to use an
+exponent function from a math library.  However, another option is
+through bit shifting.
+</p>
+
+<p>
+I decided to do a quick test to compare the two methods of computing
+\(2^x\).
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">## powers of two using ** operator
+def f1(n=100):
+    for i in range(n):
+	2**i
+
+## powers of two using math.pow
+import math
+def f2(n=100):
+    for i in range(n):
+	math.pow(2,i)
+
+## powers of two using bit shifting
+def f3(n=100):
+    for i in range(n):
+	1 &lt;&lt; i
+
+import timeit
+import statistics
+repeat = 50
+number = 10000
+f1res = timeit.repeat(f1,repeat=repeat,number=number)
+f2res = timeit.repeat(f2,repeat=repeat,number=number)
+f3res = timeit.repeat(f3,repeat=repeat,number=number)
+print "operator: %f (%f)" % (statistics.mean(f1res),
+			     statistics.stdev(f1res)/(repeat**0.5))
+print "math.pow: %f (%f)" % (statistics.mean(f2res),
+			     statistics.stdev(f2res)/(repeat**0.5))
+print "bit shifting: %f (%f)" % (statistics.mean(f3res),
+				 statistics.stdev(f3res)/(repeat**0.5))
+</pre>
+</div>
+
+<pre class="example">
+operator: 0.505953 (0.001447)
+math.pow: 0.226857 (0.000422)
+bit shifting: 0.068914 (0.000183)
+</pre>
+
+
+<p>
+From the results, we can see that bit shifting is considerably faster
+than using the power operator.  In the grand scheme of things, its a
+minor difference in computation time.  However, if you are computing
+\(2^x\) millions or billions of times in a simulation, the small gain in
+performance can add up quickly.
+</p>
+
+<p>
+TL;DR in Python use bit shifting to compute \(2^x\).
+</p>
