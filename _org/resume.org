@@ -12,12 +12,12 @@ layout: default
 #+END_HTML
 
 
-[[./docs/meyer_resume.pdf][View in browser]]
+[[./docs/meyer_resume.pdf][Open in new tab]]
 
 #+attr_html: :download meyer_resume.pdf
 [[./docs/meyer_resume.pdf][Download as pdf]]
 
 
 #+BEGIN_HTML
-<embed src="./docs/meyer_resume.pdf">
+<embed src="./docs/meyer_resume.pdf" style="width:800px;height:1000px">
 #+END_HTML
