@@ -12,12 +12,12 @@ layout: default
 #+END_HTML
 
 
-[[./meyer_resume.pdf][View in browser]]
+[[./docs/meyer_resume.pdf][View in browser]]
 
 #+attr_html: :download meyer_resume.pdf
-[[./meyer_resume.pdf][Download as pdf]]
+[[./docs/meyer_resume.pdf][Download as pdf]]
 
 
 #+BEGIN_HTML
-<embed src="./meyer_re.pdf">
+<embed src="./docs/meyer_resume.pdf">
 #+END_HTML
