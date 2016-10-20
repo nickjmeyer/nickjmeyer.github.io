@@ -46,17 +46,18 @@
 }
 
 .scroll-down {
-    top: 90%;
-    position: absolute;
+    top: 89%;
+    position: relative;
     text-align: center;
+    width: 100%;
 }
 
 .scroll-down img {
-    width: 8%;
+    width: 6%;
 }
 
 .scroll-down img:hover {
-    width: 9%;
+    width: 7%;
 }
 
 .social-media {
