@@ -1,0 +1,80 @@
+.panel {
+    position: relative;
+}
+
+.panel h1 {
+    font-family: "Montserrat",sans-serif;
+    font-size: 6vw;
+    padding: 0%;
+    margin: 1%;
+}
+
+.me-panel .inner {
+    background: rgba(30,30,30,0.2);
+}
+
+.research-panel .inner {
+    background: rgba(180,30,30,0.2);
+}
+
+.game-panel .inner {
+    background: rgba(30,30,180,0.2);
+}
+
+.blog-panel .inner {
+    background: rgba(30,180,30,0.2);
+}
+
+.inner {
+    /* padding-top: 2%; */
+	  width:80%;
+ 	  margin:0 auto;
+}
+
+.vertical-center {
+	  text-align:center;
+	  width: 100%;
+	  position: absolute;
+	  top: 15%;
+}
+
+.panel-pic {
+    margin: 1%;
+    border:.5vw solid rgba(30,30,30,0.9);
+    border-radius: 50%;
+    width:20%;
+}
+
+.scroll-down {
+    top: 85%;
+    position: absolute;
+    text-align: center;
+}
+
+.scroll-down img {
+    width: 8%;
+}
+
+.scroll-down img:hover {
+    width: 9%;
+}
+
+.social-media {
+    width: 6%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.personal-links {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.personal-links td {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.personal-links a {
+    text-decoration: none;
+}

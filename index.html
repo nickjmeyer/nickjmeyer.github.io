@@ -1,22 +1,54 @@
----
-layout: default
----
-
-<div class="home">
-  <ul class="post-list">
-    {% for post in site.posts %}
-    <li>
-      <br>
-      <h3>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </h3>
-      <span class="post-meta">{{ post.date | date: "%b %-d, %Y %H:%m" }}</span>
-      <hr id="line">
-      <div class="content">
-	{{ post.excerpt }}
+<!DOCTYPE html>
+<html>
+  <body>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css"/>
+    <section class="panel me-panel" data-section-name="me">
+      <div class="inner vertical-center">
+        <img class="panel-pic" src="images/me.jpg"/>
+        <h1>Nick Meyer</h1>
+        <table class="personal-links">
+          <tr>
+            <td><a href="resume.pdf">Resume</a></td>
+            <td><a href="https://www.linkedin.com/in/nicholasjamesmeyer">LinkedIn</a></td>
+            <td><a href="https://www.github.com/nickjmeyer">GitHub</a></td>
+          </tr>
+        </table>
       </div>
-      <br>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+      <div class="scroll-down" onclick="$.scrollify.next()">
+        <img src="images/down.png"/>
+      </div>
+      <!-- <div> -->
+      <!--   <a href="https://www.linkedin.com/in/nicholasjamesmeyer"><img class="social-media" src="images/linkedin.svg"></a> -->
+      <!--   <a href="https://www.github.com/nickjmeyer"><img class="social-media" src="images/git.svg"></a> -->
+      <!-- </div> -->
+    </section>
+    <section class="panel research-panel" data-section-name="research">
+      <div class="inner vertical-center">
+        <img class="panel-pic" src="images/research.png"/>
+        <h1>Research</h1>
+      </div>
+      <div class="scroll-down">
+        <img src="images/down.png" onclick="$.scrollify.next()"/>
+      </div>
+    </section>
+    <section class="panel game-panel" data-section-name="game">
+      <div class="inner vertical-center">
+        <img class="panel-pic" src="images/game.png"/>
+        <h1>Games</h1>
+      </div>
+      <div class="scroll-down" onclick="$.scrollify.next()">
+        <img src="images/down.png"/>
+      </div>
+    </section>
+    <section class="panel blog-panel" data-section-name="blog">
+      <div class="inner vertical-center">
+        <img class="panel-pic" src="images/blog.png"/>
+        <h1>Blog</h1>
+      </div>
+    </section>
+    <script src="./script/jquery-3.1.1.min.js"></script>
+    <script src="./script/jquery.scrollify-1.0.5.min.js"></script>
+    <script src="./script/main.js"></script>
+  </body>
+</html>
